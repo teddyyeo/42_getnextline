@@ -6,7 +6,7 @@
 /*   By: tayeo <tayeo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:09:21 by tayeo             #+#    #+#             */
-/*   Updated: 2022/07/06 19:14:12 by tayeo            ###   ########.fr       */
+/*   Updated: 2022/07/06 19:19:54 by tayeo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 # define GET_NEXT_LINE_H
 # include <stdlib.h>
 
-char *get_next_line(int fd);
+char	*get_next_line(int fd);
 #endif
