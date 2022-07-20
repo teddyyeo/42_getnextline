@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tayeo <tayeo@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: tayeo <tayeo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:09:21 by tayeo             #+#    #+#             */
-/*   Updated: 2022/07/18 15:12:44 by tayeo            ###   ########.fr       */
+/*   Updated: 2022/07/20 16:21:22 by tayeo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct charrr
+typedef struct s_node
 {
-	char c;
-	struct charrr *next;
-} charrr;
+	char			c;
+	struct s_node	*next;
+}	t_node;
 
 char	*get_next_line(int fd);
-charrr	*append(char c, charrr *addr);
-char	*glue(charrr *line, ssize_t offset);
+t_node	*append(char c, t_node *addr);
+char	*glue(t_node *line, ssize_t offset);
 
 #endif

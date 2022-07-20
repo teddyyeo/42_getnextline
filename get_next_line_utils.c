@@ -3,36 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tayeo <tayeo@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: tayeo <tayeo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 14:48:58 by tayeo             #+#    #+#             */
-/*   Updated: 2022/07/18 15:12:29 by tayeo            ###   ########.fr       */
+/*   Updated: 2022/07/20 16:22:04 by tayeo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"get_next_line.h"
 
-charrr	*append(char c, charrr *addr)
+t_node	*append(char c, t_node *addr)
 {
-	static charrr *text;
-	//printf("Character to append: %c\n", c);
-	text = malloc(sizeof(charrr));
-	//printf("Current addr: %p\n", text);
+	static t_node	*text;
+
+	text = malloc(sizeof(t_node));
 	if (text == NULL)
 		return (NULL);
 	if (addr != NULL)
 		addr -> next = text;
 	text -> c = c;
-	//if (addr != NULL)
-	//	printf("Pointing address: %p\n\n", addr -> next);
 	return (text);
 }
 
-char	*glue(charrr *line, ssize_t offset)
+char	*glue(t_node *line, ssize_t offset)
 {
 	char	*superstring;
 	int		idx;
-	charrr	*temp;
+	t_node	*temp;
 
 	superstring = malloc(sizeof(char) * (offset + 2));
 	idx = 0;

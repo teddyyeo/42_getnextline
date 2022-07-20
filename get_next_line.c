@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tayeo <tayeo@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: tayeo <tayeo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:58:31 by tayeo             #+#    #+#             */
-/*   Updated: 2022/07/18 16:12:24 by tayeo            ###   ########.fr       */
+/*   Updated: 2022/07/20 16:21:21 by tayeo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-#include<stdio.h>
 char	*get_next_line(int fd)
 {
 	char	buf[BUFFER_SIZE];
 	ssize_t	read_bytes;
 	int		offset;
-	charrr*	line;
-	charrr* first;
+	t_node	*line;
+	t_node	*first;
 
 	read_bytes = read(fd, &buf[0], 1);
 	offset = 0;
@@ -35,7 +34,7 @@ char	*get_next_line(int fd)
 		else
 			line = append(buf[0], line);
 		if (buf[0] == '\n')
-			break;
+			break ;
 		read_bytes = read(fd, &buf[0], 1);
 		offset++;
 	}
