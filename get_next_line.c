@@ -6,38 +6,46 @@
 /*   By: tayeo <tayeo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 16:58:31 by tayeo             #+#    #+#             */
-/*   Updated: 2022/07/18 16:12:24 by tayeo            ###   ########.fr       */
+/*   Updated: 2022/07/22 17:03:33 by tayeo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-#include<stdio.h>
+#include <stdio.h> //TODO! remove
+
+
 char	*get_next_line(int fd)
 {
-	char	buf[BUFFER_SIZE];
-	ssize_t	read_bytes;
-	int		offset;
-	charrr*	line;
-	charrr* first;
-
-	read_bytes = read(fd, &buf[0], 1);
-	offset = 0;
-	if (read_bytes == 0)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	while (read_bytes != 0)
+	char	buf[BUFFER_SIZE + 1];
+	ssize_t	read_bytes;
+	static char	*safe;
+	char		*line;
+
+	while (1)
 	{
-		if (offset == 0)
+		read_bytes = read(fd, buf, BUFFER_SIZE);
+		if (read_bytes < 0)
+			return (NULL);
+		buf[read_bytes] = '\0';
+		if (read_bytes == 0)
 		{
-			line = append(buf[0], NULL);
-			first = line;
+			line = safe;
+			safe = NULL;
+			return (line);
 		}
-		else
-			line = append(buf[0], line);
-		if (buf[0] == '\n')
-			break;
-		read_bytes = read(fd, &buf[0], 1);
-		offset++;
+		if (ft_strchr(buf, '\n') != NULL)
+		{
+			*ft_strchr(buf, '\n') = '\0';
+			line = ft_strjoin(safe, buf);
+			line = ft_strjoin(line, "\n");
+			safe = ft_strjoin(NULL, ft_strchr(buf, '\0') + 1);
+			if ('\0' == buf[read_bytes - 1])
+				safe = NULL;
+			return (line);
+		}
+		safe = ft_strjoin(safe, buf);
 	}
-	return (glue(first, offset));
 }

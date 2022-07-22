@@ -6,46 +6,66 @@
 /*   By: tayeo <tayeo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 14:48:58 by tayeo             #+#    #+#             */
-/*   Updated: 2022/07/18 15:12:29 by tayeo            ###   ########.fr       */
+/*   Updated: 2022/07/21 13:03:08 by tayeo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"get_next_line.h"
 
-charrr	*append(char c, charrr *addr)
+size_t	ft_strlen(const char *s)
 {
-	static charrr *text;
-	//printf("Character to append: %c\n", c);
-	text = malloc(sizeof(charrr));
-	//printf("Current addr: %p\n", text);
-	if (text == NULL)
-		return (NULL);
-	if (addr != NULL)
-		addr -> next = text;
-	text -> c = c;
-	//if (addr != NULL)
-	//	printf("Pointing address: %p\n\n", addr -> next);
-	return (text);
+	const char	*start;
+
+	start = s;
+	if (s == NULL)
+		return (0);
+	while (*s)
+		s++;
+	return (s - start);
 }
 
-char	*glue(charrr *line, ssize_t offset)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*superstring;
-	int		idx;
-	charrr	*temp;
+	int		l1;
+	int		l2;
+	char	*new;
 
-	superstring = malloc(sizeof(char) * (offset + 2));
-	idx = 0;
-	if (superstring == NULL)
+	l1 = ft_strlen(s1);
+	l2 = ft_strlen(s2);
+	new = malloc(sizeof(char) * (1 + l1 + l2));
+	if (new == NULL)
 		return (NULL);
-	superstring[offset + 1] = 0;
-	while (idx <= offset)
+	ft_memmove(new, s1, l1);
+	ft_memmove(new + l1, s2, l2);
+	*(new + l1 + l2) = '\0';
+	return (new);
+}
+
+void	*ft_memmove(void *dest, const void *src, size_t n)
+{
+	char	*d;
+	char	*s;
+
+	d = (char *)dest;
+	s = (char *)src;
+	if (dest == src || src == NULL)
+		return (dest);
+	if (s < d)
 	{
-		superstring[idx] = line -> c;
-		temp = line -> next;
-		free(line);
-		line = temp;
-		idx++;
+		while (n--)
+			*(d + n) = *(s + n);
+		return (dest);
 	}
-	return (superstring);
+	while (n--)
+		*d++ = *s++;
+	return (dest);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s && *s != (unsigned char)c)
+		s++;
+	if (*s == (unsigned char)c)
+		return ((char *)s);
+	return (0);
 }
