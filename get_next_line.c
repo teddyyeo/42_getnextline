@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayeo <tayeo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 16:58:31 by tayeo             #+#    #+#             */
-/*   Updated: 2022/07/22 17:03:33 by tayeo            ###   ########.fr       */
+/*   Created: 2022/07/22 17:12:07 by tayeo             #+#    #+#             */
+/*   Updated: 2022/07/22 17:12:10 by tayeo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	char	buf[BUFFER_SIZE + 1];
 	ssize_t	read_bytes;
+
 	static char	*safe;
 	char		*line;
 
