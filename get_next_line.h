@@ -6,7 +6,7 @@
 /*   By: tayeo <tayeo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 17:10:35 by tayeo             #+#    #+#             */
-/*   Updated: 2022/07/22 17:10:37 by tayeo            ###   ########.fr       */
+/*   Updated: 2022/07/27 15:40:26 by tayeo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@
 
 
 char	*get_next_line(int fd);
+char	*saver(char **safe);
 size_t	ft_strlen(const char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char const *s1, char const *s2, int flag);
 void	*ft_memmove(void *dest, const void *src, size_t n);
 char	*ft_strchr(const char *s, int c);
+char	*end_of_file(char **safe);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tayeo <tayeo@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 17:09:44 by tayeo             #+#    #+#             */
-/*   Updated: 2022/07/22 17:09:51 by tayeo            ###   ########.fr       */
+/*   Updated: 2022/07/27 15:34:08 by tayeo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *s)
 	return (s - start);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2, int flag)
 {
 	int		l1;
 	int		l2;
@@ -35,9 +35,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	new = malloc(sizeof(char) * (1 + l1 + l2));
 	if (new == NULL)
 		return (NULL);
-	ft_memmove(new, s1, l1);
+	if (s1 != NULL)
+		ft_memmove(new, s1, l1);
 	ft_memmove(new + l1, s2, l2);
 	*(new + l1 + l2) = '\0';
+	if (flag == 1 && s1 != NULL)
+		free((void*)s1);
 	return (new);
 }
 
@@ -67,5 +70,5 @@ char	*ft_strchr(const char *s, int c)
 		s++;
 	if (*s == (unsigned char)c)
 		return ((char *)s);
-	return (0);
+	return (NULL);
 }
